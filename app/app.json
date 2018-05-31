@@ -1,5 +1,9 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "splash": {
+      "backgroundColor": "#013146",
+      "image": "./assets/img/bushfire-2018-logo.png"
+    }
   }
 }
