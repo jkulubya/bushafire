@@ -1,56 +1,44 @@
 import React from 'react';
-import { Button, Image, ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ImageBackground, StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { Icon } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+
 export default class ScheduleArtiste extends React.Component {
   render() {
     return (
       <TouchableHighlight style={styles.container} underlayColor="#ffbe0f" onPress={() => console.log('PRESSED')}>
-        <ListItem
-          chevron={true}
-          chevronColor="#013146"
-          containerStyle={styles.listItemContainer}
-          leftElement={<Text style={styles.actTime}>1400</Text>}
-          title={<Text style={styles.actName}>Alice Phoebe Lou</Text>}
-        />
+        <Grid>
+            <Col style={{alignSelf: 'center', width: 60 }}>
+              <Text style={styles.actTime}>1400</Text>
+            </Col>
+            <Col style={{alignSelf: 'center'}}>
+              <Text style={styles.actName}>Alice Phoebe Lou Lou Alice Azha</Text>
+            </Col>
+            <Col style={{alignSelf: 'center', width: 40 }}>
+              <Icon name='arrow-forward' style={{ alignSelf:'center', color: '#013146', fontSize: 15 }}/>
+            </Col>
+        </Grid>
       </TouchableHighlight>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  backgroundImageWrapper: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-  },
-  backgroundImage: {
-    flex: 1,
-  },
-  viewTest: {
-    height: 20,
-    width: 20,
-    backgroundColor: 'red',
-  },
-  // container: {
-  //   flex: 1,
-  // },
-  listItemContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0)'
+  container: {
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   actName: {
+    alignSelf: 'center',
     color: '#013146',
     fontFamily: 'bowie-black',
     textAlign: 'center',
     fontSize: 22,
-    //paddingTop: 35,
   },
   actTime: {
+    alignSelf: 'center',
     color: '#013146',
     fontFamily: 'bowie-black',
     fontSize: 14,
-    textAlign: 'center',
-    //paddingBottom: 35
-  }
+  },
 });
