@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './screens/Home';
 import VenueMap from './screens/VenueMap';
 import Schedule from "./navigators/ScheduleTabs";
+import Drawer from './components/Drawer';
 import { AppLoading, Font } from 'expo';
 import { createDrawerNavigator } from 'react-navigation';
 
@@ -38,4 +39,6 @@ const AppNavigator =  createDrawerNavigator({
   Home: Home,
   Schedule: Schedule,
   VenueMap: VenueMap,
+},{
+  contentComponent: Drawer,
 });
