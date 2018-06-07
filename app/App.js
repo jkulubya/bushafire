@@ -15,6 +15,8 @@ export default class App extends React.Component {
       'bowie-black': require('./assets/fonts/Bowie-Black.otf'),
       'sunflower-bold': require('./assets/fonts/Sunflower-Bold.ttf'),
       'sunflower-light': require('./assets/fonts/Sunflower-Light.ttf'),
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     });
   }
 

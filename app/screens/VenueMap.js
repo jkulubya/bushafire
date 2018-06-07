@@ -1,10 +1,11 @@
 import React from 'react';
-import { FlatList, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { MapView } from 'expo';
-import { Header } from 'react-native-elements';
+import { Body, Button, Container, Header, Icon, Left, Right, Title } from 'native-base';
 
 const places = [
   {
+    key: 1,
     name: "The Barn",
     coordinates: {
       latitude: -26.496541,
@@ -19,18 +20,24 @@ export default class VenueMap extends React.Component {
   }
   render() {
     return (
-      <View style={styles.body}>
+      <Container style={styles.body}>
         <Header
-          statusBarProps={{ barStyle: 'light-content' }}
-          leftComponent={{
-            icon: 'menu',
-            color: '#fff',
-            onPress: () => this.props.navigation.openDrawer(),
-          }}
-          centerComponent={{ text: 'Venue Map', style: { color: '#fff', fontWeight: 'bold' } }}
-          backgroundColor="#013146"
-          outerContainerStyles={styles.headerOuterContainer}
-        />
+          style={styles.header}
+          iosBarStyle="light-content"
+          androidStatusBarColor="#013146"
+          hasTabs>
+          <Left>
+            <Button 
+              onPress={() => this.props.navigation.openDrawer()}
+              transparent>
+              <Icon name='menu' style={{ color: '#FFF' }}/>
+            </Button>
+          </Left>
+          <Body>
+            <Title style={styles.headerTitle}>Venue Map</Title>
+          </Body>
+          <Right />
+        </Header>
         <MapView 
           style={{ flex: 1 }}
           initialRegion={{
@@ -50,7 +57,7 @@ export default class VenueMap extends React.Component {
           <MapView.Marker coordinate={place.coordinates} title={place.name}/>
         ))}
         </MapView>
-      </View>
+      </Container>
     );
   }
 
@@ -72,27 +79,17 @@ const styles = StyleSheet.create({
   body:{
     backgroundColor: '#293481',
     flex: 1,
+    ...Platform.select({
+      android: {
+          marginTop: StatusBar.currentHeight
+      }
+    })
   },
-  // pageBackground: {
-  //   width: null,
-  //   height: null,
-  // },
-  headerOuterContainer: {
-    borderBottomWidth: 0,
+  header: {
+    backgroundColor: '#013146'
   },
-  item: {
-    //height: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
-    paddingLeft: 10,
-  },
-  itemText:{
-    color: '#013146',
-    fontSize: 22,
-    fontWeight: 'bold'
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#ffbe0f',
+  headerTitle: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });

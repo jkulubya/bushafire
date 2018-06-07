@@ -1,17 +1,18 @@
 import React from 'react';
-import { Button, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import { Button, Image, ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
 export default class ScheduleArtiste extends React.Component {
   render() {
     return (
-      <TouchableOpacity activeOpacity={0.65} style={styles.container}>
-        <ImageBackground style={styles.backgroundImage} source={require('../assets/img/acts/alice-phoebe-lou.jpg')}>
-          <View>
-            <Text style={styles.actName}>Alice Phoebe Lou</Text>
-            <Text style={styles.actTime}>1400</Text>
-          </View>
-        </ImageBackground>
-      </TouchableOpacity>
+      <TouchableHighlight style={styles.container} underlayColor="#ffbe0f" onPress={() => console.log('PRESSED')}>
+        <ListItem
+          chevron={true}
+          chevronColor="#013146"
+          containerStyle={styles.listItemContainer}
+          leftElement={<Text style={styles.actTime}>1400</Text>}
+          title={<Text style={styles.actName}>Alice Phoebe Lou</Text>}
+        />
+      </TouchableHighlight>
     );
   }
 }
@@ -27,24 +28,29 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
   },
-  container: {
-    margin: 8,
-    marginTop: 6,
-    marginBottom: 6,
-    flex: 1,
+  viewTest: {
+    height: 20,
+    width: 20,
+    backgroundColor: 'red',
+  },
+  // container: {
+  //   flex: 1,
+  // },
+  listItemContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   actName: {
-    color: '#f6e1c2',
+    color: '#013146',
     fontFamily: 'bowie-black',
     textAlign: 'center',
-    fontSize: 35,
-    paddingTop: 35,
+    fontSize: 22,
+    //paddingTop: 35,
   },
   actTime: {
-    color: '#f6e1c2',
+    color: '#013146',
     fontFamily: 'bowie-black',
-    fontSize: 25,
+    fontSize: 14,
     textAlign: 'center',
-    paddingBottom: 35
+    //paddingBottom: 35
   }
 });
