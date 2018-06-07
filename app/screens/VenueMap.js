@@ -5,7 +5,7 @@ import { Body, Button, Container, Header, Icon, Left, Right, Title } from 'nativ
 
 const places = [
   {
-    key: 1,
+    id: '1',
     name: "The Barn",
     coordinates: {
       latitude: -26.496541,
@@ -54,7 +54,7 @@ export default class VenueMap extends React.Component {
           pitchEnabled={false}
         >
         {places.map(place => (
-          <MapView.Marker coordinate={place.coordinates} title={place.name}/>
+          <MapView.Marker key={place.id} coordinate={place.coordinates} title={place.name}/>
         ))}
         </MapView>
       </Container>
