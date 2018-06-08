@@ -1,23 +1,15 @@
 import React from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
+import Places from '../data/places';
 import { MapView } from 'expo';
 
-const places = [
-  {
-    id: '1',
-    name: "The Barn",
-    coordinates: {
-      latitude: -26.496541,
-      longitude: 31.217661,
-    },    
-  }
-]
 export default class VenueMap extends React.Component {
   constructor(props){
     super(props);
     this.map = React.createRef();
   }
+
   render() {
     return (
       <Container>
@@ -40,7 +32,7 @@ export default class VenueMap extends React.Component {
           rotateEnabled={false}
           pitchEnabled={false}
         >
-        {places.map(place => (
+        {Places.map(place => (
           <MapView.Marker key={place.id} coordinate={place.coordinates} title={place.name}/>
         ))}
         </MapView>
