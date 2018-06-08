@@ -1,7 +1,8 @@
 import React from 'react';
+import Header from '../components/Header';
 import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { MapView } from 'expo';
-import { Body, Button, Container, Header, Icon, Left, Right, Title } from 'native-base';
+import { Container  } from 'native-base';
 
 const places = [
   {
@@ -22,22 +23,9 @@ export default class VenueMap extends React.Component {
     return (
       <Container style={styles.body}>
         <Header
-          style={styles.header}
-          iosBarStyle="light-content"
-          androidStatusBarColor="#013146"
-          hasTabs>
-          <Left>
-            <Button 
-              onPress={() => this.props.navigation.openDrawer()}
-              transparent>
-              <Icon name='menu' style={{ color: '#FFF' }}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.headerTitle}>Venue Map</Title>
-          </Body>
-          <Right />
-        </Header>
+          headerTitleText="Venue map"
+          onLeftPress={this.props.navigation.openDrawer}
+         />
         <MapView 
           style={{ flex: 1 }}
           initialRegion={{

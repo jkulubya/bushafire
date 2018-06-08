@@ -1,28 +1,16 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { Button, Body, Container, Header, Icon, Left, Right, Title } from "native-base";
+import Header from '../components/Header';
+import { Platform, StatusBar, StyleSheet, Text } from 'react-native';
+import { Container } from "native-base";
 
 export default class Home extends React.Component {
   render() {
     return (
       <Container style={styles.body}>
         <Header
-          style={styles.header}
-          iosBarStyle="light-content"
-          androidStatusBarColor="#013146"
-          hasTabs>
-          <Left>
-            <Button 
-              onPress={() => this.props.navigation.openDrawer()}
-              transparent>
-              <Icon name='menu' style={{ color: '#FFF' }}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.headerTitle}>BUSHAFIRE</Title>
-          </Body>
-          <Right />
-        </Header>
+          headerTitleText="BUSHAFIRE"
+          onLeftPress={this.props.navigation.openDrawer}
+         />
         <Text style={{ fontSize: 25, marginTop: 30 }}>Home page. Cool stuff will go here.</Text>
       </Container>
     );
@@ -40,11 +28,4 @@ const styles = StyleSheet.create({
       }
     })
   },
-  header: {
-    backgroundColor: '#013146'
-  },
-  headerTitle: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  }
 });
