@@ -1,16 +1,16 @@
 import React from 'react';
 //import ImageBackground from '../components/SafeImageBackground';
 import { StyleSheet } from 'react-native';
-import { Button, Body, Container, Header as Header, Icon, Left, Right, Title } from "native-base";
+import { Button, Body, Container, Header as NbHeader, Icon, Left, Right, Title } from "native-base";
 
-export default class myHeader extends React.Component {
+export default class Header extends React.Component {
   constructor(props){
     super(props);
   }
 
   render() {
     return (
-      <Header
+      <NbHeader
         style={StyleSheet.flatten(styles.header, this.props.headerStyle)}
         iosBarStyle="light-content"
         androidStatusBarColor="#013146"
@@ -28,7 +28,7 @@ export default class myHeader extends React.Component {
           </Title>
         </Body>
         <Right />
-      </Header>
+      </NbHeader>
     );
   }
 }
