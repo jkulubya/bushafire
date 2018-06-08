@@ -1,92 +1,57 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import ScheduleArtist from '../components/ScheduleArtist';
 import ImageBackground from '../components/SafeImageBackground';
+import Header from '../components/Header';
 import { FlatList, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { Button, Body, Container, Header, Icon, Left, Right, ScrollableTab, Tab, Tabs, Title } from "native-base";
+import { Container, ScrollableTab, Tab, Tabs } from "native-base";
 
-var scheduledArtistes = [
-  { key: '1', name: 'Alice Phoebe Lou'},
-  { key: '2', name: '5K-HD'},
-  { key: '3', name: 'Azah'},
-  { key: '4', name: 'Bam Bam Brown'},
-  { key: '5', name: 'Bholoja'},
-  { key: '6', name: 'Davina Satori'},
-  { key: '7', name: 'DJ Bob'},
-  { key: '8', name: 'Alice Phoebe Lou'},
-  { key: '9', name: '5K-HD'},
-  { key: '10', name: 'Azah'},
-  { key: '11', name: 'Bam Bam Brown'},
-  { key: '12', name: 'Bholoja'},
-  { key: '13', name: 'Davina Satori'},
-  { key: '14', name: 'DJ Bob'},
-  { key: '15', name: 'Alice Phoebe Lou'},
-  { key: '16', name: '5K-HD'},
-  { key: '17', name: 'Azah'},
-  { key: '18', name: 'Bam Bam Brown'},
-  { key: '19', name: 'Bholoja'},
-  { key: '20', name: 'Davina Satori'},
-  { key: '21', name: 'DJ Bob'},
-]
-export default class Home extends React.Component {
+export default class Schedule extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <Container style={styles.body}>
         <Header
-          style={styles.header}
-          iosBarStyle="light-content"
-          androidStatusBarColor="#013146"
-          hasTabs>
-          <Left>
-            <Button 
-              onPress={() => this.props.navigation.openDrawer()}
-              transparent>
-              <Icon name='menu' style={{ color: '#FFF' }}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.headerTitle}>BUSHAFIRE</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Tabs
-          renderTabBar={()=> <ScrollableTab />}
-          >
-          <Tab heading="Friday 26 May">
-            <ImageBackground
-              style={{ flex : 1}}
-              imageStyle={{ resizeMode: 'repeat' }}
-              source={require('../assets/img/bushfire-background.png')}>
-              <FlatList
-                data = {scheduledArtistes}
-                renderItem={({item}) => <ScheduleArtist />}
-                ItemSeparatorComponent={this.renderSeparator} />
-            </ImageBackground>
-          </Tab>
-          <Tab heading="Saturday 27 May">
-            <ImageBackground
-              style={{ flex : 1}}
-              imageStyle={{ resizeMode: 'repeat' }}
-              source={require('../assets/img/bushfire-background.png')}>
-              <FlatList
-                data = {scheduledArtistes}
-                renderItem={({item}) => <ScheduleArtist />}
-                ItemSeparatorComponent={this.renderSeparator} />
-            </ImageBackground>
-          </Tab>
-          <Tab heading="Sunday 28 May">
-            <ImageBackground
-              style={{ flex : 1}}
-              imageStyle={{ resizeMode: 'repeat' }}
-              source={require('../assets/img/bushfire-background.png')}>
-              <FlatList
-                data = {scheduledArtistes}
-                renderItem={({item}) => <ScheduleArtist />}
-                ItemSeparatorComponent={this.renderSeparator} />
-            </ImageBackground>
-          </Tab>
+          headerTitleText="Schedule"
+          onLeftPress={this.props.navigation.openDrawer}
+         />
+        <Tabs renderTabBar={()=> <ScrollableTab />}>
+          {this.props.lineup.days.map(day => 
+            (<Tab heading={moment(day.date).format("dddd D MMM")}>
+              <ImageBackground
+                style={{ flex : 1}}
+                imageStyle={{ resizeMode: 'repeat' }}
+                source={require('../assets/img/bushfire-background.png')}>
+                <FlatList
+                  data = { this.filterActs(this.props.lineup.acts, day) }
+                  renderItem={this.renderItem}
+                  ItemSeparatorComponent={this.renderSeparator} />
+              </ImageBackground>                  
+            </Tab>)
+          )}
         </Tabs>
       </Container>
     );
+  }
+
+  filterActs = (data, day) => {
+    return data.filter(el => {
+      dayStart = moment(day.start).tz('Africa/Mbabane');
+      dayEnd = moment(day.end).tz('Africa/Mbabane');
+      actStart = moment(el.start).tz('Africa/Mbabane');
+      return (actStart >= dayStart && actStart <= dayEnd);
+    })
+  }
+
+  renderItem = ({ item }) => {
+   return <ScheduleArtist
+            name={item.name}
+            artistes={item.artistes}
+            start={item.start}
+            end={item.end} />
   }
 
   renderSeparator = () =>  <View style={styles.listSeparator} />
@@ -102,25 +67,8 @@ const styles = StyleSheet.create({
       }
     })
   },
-  header: {
-    backgroundColor: '#013146'
-  },
-  headerTitle: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  },
   listSeparator: {
     height: 1,
     backgroundColor: '#ffbe0f',
-  },
-  item: {
-    paddingBottom: 10,
-    paddingTop: 10,
-    paddingLeft: 10,
-  },
-  itemText:{
-    color: '#013146',
-    fontSize: 22,
-    fontWeight: 'bold'
   },
 });

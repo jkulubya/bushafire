@@ -1,10 +1,19 @@
-//import React from 'react';
+import React from 'react';
 import Schedule from '../screens/Schedule';
+import Lineup from '../data/lineup';
 import { createBottomTabNavigator } from 'react-navigation';
 
 export default createBottomTabNavigator({
-  Main: Schedule,
-  Amphitheatre: Schedule,
-  Barn: Schedule,
-  Firefly: Schedule,
+  Main: {
+    screen: props => <Schedule {...props} lineup={Lineup.main} />,
+  },
+  Amphitheatre: {
+    screen: props => <Schedule {...props} lineup={Lineup.amphitheatre} />,
+  },
+  Barn: {
+    screen: props => <Schedule {...props} lineup={Lineup.barn} />,
+  },
+  Firefly: {
+    screen: props => <Schedule {...props} lineup={Lineup.firefly} />,
+  }
 });

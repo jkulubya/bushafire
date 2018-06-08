@@ -4,6 +4,10 @@ import { Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class ScheduleArtiste extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <TouchableHighlight style={styles.container} underlayColor="#ffbe0f" onPress={() => console.log('PRESSED')}>
@@ -12,7 +16,7 @@ export default class ScheduleArtiste extends React.Component {
               <Text style={styles.actTime}>1400</Text>
             </Col>
             <Col style={{alignSelf: 'center'}}>
-              <Text style={styles.actName}>Alice Phoebe Lou Lou Alice Azha</Text>
+              <Text style={styles.actName}>{this.props.name}</Text>
             </Col>
             <Col style={{alignSelf: 'center', width: 40 }}>
               <Icon name='arrow-forward' style={{ alignSelf:'center', color: '#013146', fontSize: 15 }}/>
