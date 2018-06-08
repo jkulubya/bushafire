@@ -4,7 +4,7 @@ import Container from '../components/Container';
 import Header from '../components/Header';
 import ImageBackground from '../components/SafeImageBackground';
 import ScheduleArtist from '../components/ScheduleArtist';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { ScrollableTab, Tab, Tabs } from "native-base";
 
 export default class Schedule extends React.Component {
