@@ -1,10 +1,11 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import ScheduleArtist from '../components/ScheduleArtist';
-import ImageBackground from '../components/SafeImageBackground';
+import Container from '../components/Container';
 import Header from '../components/Header';
-import { FlatList, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { Container, ScrollableTab, Tab, Tabs } from "native-base";
+import ImageBackground from '../components/SafeImageBackground';
+import ScheduleArtist from '../components/ScheduleArtist';
+import { FlatList, StyleSheet } from 'react-native';
+import { ScrollableTab, Tab, Tabs } from "native-base";
 
 export default class Schedule extends React.Component {
   constructor(props){
@@ -13,7 +14,7 @@ export default class Schedule extends React.Component {
 
   render() {
     return (
-      <Container style={styles.body}>
+      <Container>
         <Header
           headerTitleText="Schedule"
           onLeftPress={this.props.navigation.openDrawer}
@@ -58,15 +59,6 @@ export default class Schedule extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  body:{
-    backgroundColor: '#f2f3f5',
-    flex: 1,
-    ...Platform.select({
-      android: {
-          marginTop: StatusBar.currentHeight
-      }
-    })
-  },
   listSeparator: {
     height: 1,
     backgroundColor: '#ffbe0f',

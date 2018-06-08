@@ -1,8 +1,7 @@
 import React from 'react';
+import Container from '../components/Container';
 import Header from '../components/Header';
-import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { MapView } from 'expo';
-import { Container  } from 'native-base';
 
 const places = [
   {
@@ -21,7 +20,7 @@ export default class VenueMap extends React.Component {
   }
   render() {
     return (
-      <Container style={styles.body}>
+      <Container>
         <Header
           headerTitleText="Venue map"
           onLeftPress={this.props.navigation.openDrawer}
@@ -62,22 +61,3 @@ export default class VenueMap extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  body:{
-    backgroundColor: '#293481',
-    flex: 1,
-    ...Platform.select({
-      android: {
-          marginTop: StatusBar.currentHeight
-      }
-    })
-  },
-  header: {
-    backgroundColor: '#013146'
-  },
-  headerTitle: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-  },
-});

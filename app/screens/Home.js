@@ -1,12 +1,12 @@
 import React from 'react';
+import Container from '../components/Container';
 import Header from '../components/Header';
 import { Platform, StatusBar, StyleSheet, Text } from 'react-native';
-import { Container } from "native-base";
 
 export default class Home extends React.Component {
   render() {
     return (
-      <Container style={styles.body}>
+      <Container>
         <Header
           headerTitleText="BUSHAFIRE"
           onLeftPress={this.props.navigation.openDrawer}
@@ -17,15 +17,3 @@ export default class Home extends React.Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  body:{
-    backgroundColor: '#f2f3f5',
-    flex: 1,
-    ...Platform.select({
-      android: {
-          marginTop: StatusBar.currentHeight
-      }
-    })
-  },
-});
