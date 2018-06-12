@@ -14,7 +14,7 @@ export default class VenueMap extends React.Component {
     return (
       <Container>
         <Header
-          headerTitleText="Venue map"
+          headerTitleText="Venue Map"
           onLeftPress={this.props.navigation.openDrawer}
          />
         <MapView 

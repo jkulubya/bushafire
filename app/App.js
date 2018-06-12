@@ -38,7 +38,21 @@ export default class App extends React.Component {
 const AppNavigator =  createDrawerNavigator({
   Home: Home,
   Schedule: Schedule,
-  VenueMap: VenueMap,
+  VenueMap: {
+    screen: VenueMap,
+    navigationOptions: {
+      title: 'Venue Map',
+    }
+  },
 },{
   contentComponent: Drawer,
+  contentOptions: {
+    labelStyle: {
+      color: '#ed2e24',
+      fontFamily:'bowie-black',
+      fontSize: 22,
+      fontWeight: 'bold',
+      textAlign: 'center'
+    }
+  }
 });
